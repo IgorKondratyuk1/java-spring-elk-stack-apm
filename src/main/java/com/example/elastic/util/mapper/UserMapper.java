@@ -1,7 +1,8 @@
-package com.architecture.util.mapper;
+package com.example.elastic.util.mapper;
 
-import com.architecture.dto.response.ViewUserDto;
-import com.architecture.entity.UserEntity;
+
+import com.example.elastic.dto.response.ViewUserDto;
+import com.example.elastic.entity.UserEntity;
 
 import java.util.List;
 

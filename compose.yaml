@@ -5,13 +5,13 @@ services:
     container_name: elasticsearch
     environment:
       - discovery.type=single-node
-      - xpack.security.enabled=false  # Disable security (authentication, TLS)
-      - xpack.security.transport.ssl.enabled=false  # Disable transport layer SSL
-      - xpack.security.http.ssl.enabled=false  # Disable HTTP SSL
+      - xpack.security.enabled=false
+      - xpack.security.transport.ssl.enabled=false
+      - xpack.security.http.ssl.enabled=false
     volumes:
-      - e-data:/usr/share/elasticsearch/data
+      - elastic-data:/usr/share/elasticsearch/data
     ports:
-      - "9200:9200"  # Exposes Elasticsearch API
+      - "9200:9200"
     networks:
       - elastic
 
@@ -19,16 +19,29 @@ services:
     image: kibana:8.17.3
     container_name: kibana
     environment:
-      - ELASTICSEARCH_URL=http://localhost:9200  # Point Kibana to the Elasticsearch service
+      - ELASTICSEARCH_URL=http://localhost:9200
     ports:
-      - "5601:5601"  # Exposes Kibana UI
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+    networks:
+      - elastic
+
+  apm-server:
+    image: elastic/apm-server:8.17.3
+    container_name: apm-server
+    environment:
+      - ELASTICSEARCH_URL=http://localhost:9200  # Point APM Server to Elasticsearch service
+      - APMPROTOCOL=http
+    ports:
+      - "8200:8200"  # Exposes APM Server API
     depends_on:
       - elasticsearch
     networks:
       - elastic
 
 volumes:
-  e-data:
+  elastic-data:
     driver: local
     driver_opts:
       type: none

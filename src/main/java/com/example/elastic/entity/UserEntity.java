@@ -1,4 +1,4 @@
-package com.architecture.entity;
+package com.example.elastic.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

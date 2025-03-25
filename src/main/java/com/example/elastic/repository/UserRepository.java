@@ -1,6 +1,6 @@
-package com.architecture.repository;
+package com.example.elastic.repository;
 
-import com.architecture.entity.UserEntity;
+import com.example.elastic.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

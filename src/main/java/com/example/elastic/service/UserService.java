@@ -1,7 +1,9 @@
-package com.architecture.service;
+package com.example.elastic.service;
 
-import com.architecture.dto.request.CreateUserDto;
-import com.architecture.entity.UserEntity;
+
+
+import com.example.elastic.dto.request.CreateUserDto;
+import com.example.elastic.entity.UserEntity;
 
 import java.util.List;
 

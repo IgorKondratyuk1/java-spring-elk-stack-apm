@@ -1,4 +1,4 @@
-package com.architecture.dto.response;
+package com.example.elastic.dto.response;
 
 public record ViewUserDto(
         Long id,

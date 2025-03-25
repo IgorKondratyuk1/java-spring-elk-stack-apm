@@ -1,4 +1,4 @@
-package com.architecture.dto.request;
+package com.example.elastic.dto.request;
 
 public record CreateUserDto(
         String name,
