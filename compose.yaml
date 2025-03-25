@@ -1,0 +1,39 @@
+version: "3"
+services:
+  elasticsearch:
+    image: elasticsearch:8.17.3
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false  # Disable security (authentication, TLS)
+      - xpack.security.transport.ssl.enabled=false  # Disable transport layer SSL
+      - xpack.security.http.ssl.enabled=false  # Disable HTTP SSL
+    volumes:
+      - e-data:/usr/share/elasticsearch/data
+    ports:
+      - "9200:9200"  # Exposes Elasticsearch API
+    networks:
+      - elastic
+
+  kibana:
+    image: kibana:8.17.3
+    container_name: kibana
+    environment:
+      - ELASTICSEARCH_URL=http://localhost:9200  # Point Kibana to the Elasticsearch service
+    ports:
+      - "5601:5601"  # Exposes Kibana UI
+    depends_on:
+      - elasticsearch
+    networks:
+      - elastic
+
+volumes:
+  e-data:
+    driver: local
+    driver_opts:
+      type: none
+      device: D:\Programs\Docker\Volumes\elastic
+      o: bind
+
+networks:
+  elastic:
